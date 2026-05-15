@@ -1,20 +1,20 @@
 # Investigate Reversing 0
 
-Pada Challenge ini, kita diberikan 2 buah file yaitu ELF mystery dan juga mystery.png. 
+Pada Challenge ini, kita diberikasn 2 buah file yaitu ELF mystery dan juga mystery.png. 
 
-![](/Investigate%20Reversing%200/assets/1.png)
+![](./assets/1.png)
 
 mystery.png:
 
-![](/Investigate%20Reversing%200/mystery.png)
+![](./mystery.png)
 
 Jika diliat, file mystery merupakan file ELF 64 bit
 
-![](/Investigate%20Reversing%200/assets/2.png)
+![](./assets/2.png)
 
 Lalu, kita coba analisis fungsi main dengan ghidra dan hasil compilenya seperti berikut.
 
-![](/Investigate%20Reversing%200/assets/3.png)
+![](./assets/3.png)
 
 Nah, di sini aku menggunakan LLM untuk menjelaskan program tersebut dan hasilnya adalah sebagai berikut:
 Secara garis besar, program ini berfungsi untuk membaca flag.txt dari file teks, melakukan sedikit modifikasi (enkripsi sederhana) pada beberapa karakternya, lalu menyisipkan flag tersebut ke bagian paling akhir dari mystery.png.
@@ -41,6 +41,6 @@ Alih-alih memasukkan 26 karakter tersebut secara utuh, program membaginya ke dal
 
 Nah, setelah mengetahui ini, kita tinggal mencari 26 bytes setelah bytes akhir dari mystery.png (png biasanya diakhiri dengan IEND). Setelah itu, kita bisa menggunakan hexeditor untuk mengembalikkan bytesnya semula. Misalnya, karakter 6 - 14 tinggal kurangi -5 dari kode hexnya, dan karakter 15 tambah +3 dari kode hexnya, sehingga hasil akhirnya adalah seperti ini:
 
-![](/Investigate%20Reversing%200/assets/4.png)
+![](./assets/4.png)
 
 Flag: picoCTF{f0und_1t_3540672a}
